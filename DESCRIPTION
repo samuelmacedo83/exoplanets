@@ -1,0 +1,10 @@
+Package: exoplanets
+Type: Package
+Title: Exoplanets
+Version: 0.1.0
+Author: Samuel Macedo
+Maintainer: Samuel Macedo <samuelmacedo@recife.ifpe.edu.brt>
+Description: This package provides tools for exoplanet research
+License: It is just a free code to help other researchers
+Encoding: UTF-8
+LazyData: true
