@@ -2,22 +2,32 @@
 #'
 #' A wrapper function for download any table in NASA Exoplanets Archive
 #'
-#' @param table The table name (string). For the tables available
-#' check details below.
-#' @param columns Specify the columns that you want to download in the table.
-#' @param format The archive extension. "csv" (default), "json", "xml", "ascii",
-#' "ipac", "bar" and "pipe".
+#' @param table A string containing the table name. For the available tables check 'details' below.
+#' @param columns Specify the columns that you want to download in the table. Define the columns
+#' in a vector, for example, c("col1", "col2", "col3"). Use '"all" to download all available columns
+#' and "default" for the default columns, see more in 'details'.
+#' @param format The archive extension. "csv" (default), "json", "xml", "ascii", "ipac", "bar"
+#'  and "pipe".
 #' @param data_folder Create a separate folder for you data. If FALSE, the
 #' data will be download in your root.
 #' @param force Check if the data already exists. If TRUE, the data will
 #' download and replace.
 #'
-#' @details
+#' @details You can check the available tables in
+#' https://exoplanetarchive.ipac.caltech.edu/docs/program_interfaces.html#data.
+#' In this link you can also check the table documentation and there will be specified all
+#' available columns and what are the 'default columns'.
 #'
 #' @examples
+#' # download default columns for the exoplanets table
+#' nea_table("exoplanets")
+#'
+#' # download specific columns
+#' nea_table("q1_q17_dr24_tce", columns = c("kepid", "av_training_set"))
+#'
 #' @export
 nea_table <- function(table,
-                      columns = NULL,
+                      columns = "default",
                       format = "csv",
                       data_folder = TRUE,
                       force = FALSE){
@@ -35,10 +45,10 @@ nea_table <- function(table,
   }
 
   # Add table and columns to url
- if (is.null(columns)) {
+if (length(columns) == 1){
+  if(columns == "default"){
     url <- paste0(base_url, "table=", table)
-  } else if (length(columns) == 1){
-    if (columns == "all"){
+  } else if (columns == "all"){
       columns <- read.table(paste0(base_url, "table=", table, "&getAllColumns"))
       columns <- as.character(columns$V1)
       url <- paste0(base_url, "table=", table, "&select=", columns)

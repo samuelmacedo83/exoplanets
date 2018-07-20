@@ -4,17 +4,18 @@
 \alias{nea_table}
 \title{nea_table}
 \usage{
-nea_table(table, columns = NULL, format = "csv", data_folder = TRUE,
+nea_table(table, columns = "default", format = "csv", data_folder = TRUE,
   force = FALSE)
 }
 \arguments{
-\item{table}{The table name (string). For the tables available
-check details below.}
+\item{table}{A string containing the table name. For the available tables check 'details' below.}
 
-\item{columns}{Specify the columns that you want to download in the table.}
+\item{columns}{Specify the columns that you want to download in the table. Define the columns
+in a vector, for example, c("col1", "col2", "col3"). Use '"all" to download all available columns
+and "default" for the default columns, see more in datails.}
 
-\item{format}{The archive extension. "csv" (default), "json", "xml", "ascii",
-"ipac", "bar" and "pipe".}
+\item{format}{The archive extension. "csv" (default), "json", "xml", "ascii", "ipac", "bar"
+and "pipe".}
 
 \item{data_folder}{Create a separate folder for you data. If FALSE, the
 data will be download in your root.}
@@ -26,5 +27,16 @@ download and replace.}
 A wrapper function for download any table in NASA Exoplanets Archive
 }
 \details{
+You can check the available tables in
+https://exoplanetarchive.ipac.caltech.edu/docs/program_interfaces.html#data.
+In this link you can also check the table documentation and there will be specified all
+available columns and what are the 'default columns'.
+}
+\examples{
+# download default columns for the exoplanets table
+nea_table("exoplanets")
+
+# download specific columns
+nea_table("q1_q17_dr24_tce", columns = c("kepid", "av_training_set"))
 
 }
