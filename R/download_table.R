@@ -73,8 +73,3 @@ if (length(columns) == 1){
       } else download.file(url = url, destfile = destfile)
    } else download.file(url = url, destfile = destfile)
 }
-
-
-# lightcurves_data
-#
-# "http://archive.stsci.edu/pub/kepler/lightcurves"
