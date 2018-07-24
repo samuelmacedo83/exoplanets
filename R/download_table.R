@@ -73,3 +73,17 @@ if (length(columns) == 1){
       } else download.file(url = url, destfile = destfile)
    } else download.file(url = url, destfile = destfile)
 }
+
+
+
+nea_read_table <- function(table, folder = NULL){
+
+  if(dir.exists("q1_q17_dr24_tce")) {
+    nea_table <- read.csv(paste0(table,"/",table, ".csv"))
+  } else {
+    nea_table <- read.csv(paste0(folder, "/", table, ".csv"))
+  }
+  nea_table
+}
+
+
