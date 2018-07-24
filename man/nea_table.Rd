@@ -12,7 +12,7 @@ nea_table(table, columns = "default", format = "csv", data_folder = TRUE,
 
 \item{columns}{Specify the columns that you want to download in the table. Define the columns
 in a vector, for example, c("col1", "col2", "col3"). Use '"all" to download all available columns
-and "default" for the default columns, see more in datails.}
+and "default" for the default columns, see more in 'details'.}
 
 \item{format}{The archive extension. "csv" (default), "json", "xml", "ascii", "ipac", "bar"
 and "pipe".}

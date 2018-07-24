@@ -76,9 +76,32 @@ if (length(columns) == 1){
 
 
 
+#' nea_read_table
+#'
+#' This is a simple function for read the tables downloaded
+#' by NASA Exoplanet Archive. You can use read.csv() function if
+#' you need to be more especific about your data.
+#'
+#' @param table A string containing the table name. For the available tables check 'details' below.
+#' @param folder If NULL (default) this function will search for
+#' the folder created by nea_table(). If the data is in a different directory,
+#' pass the PATH_TO_YOUR_FOLDER as a string.
+#'
+#' @details Use before nea_table() for download the data that you want
+#' to work. You can check the available tables in
+#' https://exoplanetarchive.ipac.caltech.edu/docs/program_interfaces.html#data.
+#'
+#' @return
+#' A data frame containing the data
+#'
+#' @examples
+#' nea_table("q1_q17_dr24_tce") # Download your data
+#' nea_read_table("q1_q17_dr24_tce")
+#'
+#' @export
 nea_read_table <- function(table, folder = NULL){
 
-  if(dir.exists("q1_q17_dr24_tce")) {
+  if(dir.exists(table)) {
     nea_table <- read.csv(paste0(table,"/",table, ".csv"))
   } else {
     nea_table <- read.csv(paste0(folder, "/", table, ".csv"))
