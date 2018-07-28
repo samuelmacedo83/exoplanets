@@ -46,7 +46,7 @@ if (length(columns) == 1){
   if(columns == "default"){
     url <- paste0(base_url, "table=", table)
   } else if (columns == "all"){
-      columns <- read.table(paste0(base_url, "table=", table, "&getAllColumns"))
+      columns <- utils::read.table(paste0(base_url, "table=", table, "&getAllColumns"))
       columns <- as.character(columns$V1)
       url <- paste0(base_url, "table=", table, "&select=", columns)
     } else url <- paste0(base_url, "table=", table, "&select=", columns)
@@ -67,8 +67,8 @@ if (length(columns) == 1){
   if (file.exists(destfile)){
     if (force == FALSE){
       warning("Your data already exists. If you want to replace it, please use force = TRUE")
-      } else download.file(url = url, destfile = destfile)
-   } else download.file(url = url, destfile = destfile)
+      } else utils::download.file(url = url, destfile = destfile)
+   } else utils::download.file(url = url, destfile = destfile)
 }
 
 #' read_nea_table
@@ -97,9 +97,9 @@ if (length(columns) == 1){
 read_nea_table <- function(table, folder = NULL){
 
   if(dir.exists(table)) {
-    nea_table <- read.csv(paste0(table,"/",table, ".csv"))
+    nea_table <- utils::read.csv(paste0(table,"/",table, ".csv"))
   } else {
-    nea_table <- read.csv(paste0(folder, "/", table, ".csv"))
+    nea_table <- utils::read.csv(paste0(folder, "/", table, ".csv"))
   }
   nea_table
 }
