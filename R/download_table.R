@@ -1,4 +1,4 @@
-#' nea_table
+#' nea_table_dl
 #'
 #' A wrapper function for download any table in NASA Exoplanets Archive
 #'
@@ -20,17 +20,14 @@
 #'
 #' @examples
 #' # download default columns for the exoplanets table
-#' nea_table("exoplanets")
+#' nea_table_dl("exoplanets")
 #'
 #' # download specific columns
-#' nea_table("q1_q17_dr24_tce", columns = c("kepid", "av_training_set"))
+#' nea_table_dl("q1_q17_dr24_tce", columns = c("kepid", "av_training_set"))
 #'
 #' @export
-nea_table <- function(table,
-                      columns = "default",
-                      format = "csv",
-                      data_folder = TRUE,
-                      force = FALSE){
+nea_table_dl <- function(table, columns = "default", format = "csv",
+                         data_folder = TRUE, force = FALSE){
 
   base_url = "https://exoplanetarchive.ipac.caltech.edu/cgi-bin/nstedAPI/nph-nstedAPI?"
   dest_folder <- ""
@@ -74,9 +71,7 @@ if (length(columns) == 1){
    } else download.file(url = url, destfile = destfile)
 }
 
-
-
-#' nea_read_table
+#' read_nea_table
 #'
 #' This is a simple function for read the tables downloaded
 #' by NASA Exoplanet Archive. You can use read.csv() function if
@@ -108,5 +103,3 @@ read_nea_table <- function(table, folder = NULL){
   }
   nea_table
 }
-
-
