@@ -96,10 +96,10 @@ if (length(columns) == 1){
 #'
 #' @examples
 #' nea_table("q1_q17_dr24_tce") # Download your data
-#' nea_read_table("q1_q17_dr24_tce")
+#' read_nea_table("q1_q17_dr24_tce")
 #'
 #' @export
-nea_read_table <- function(table, folder = NULL){
+read_nea_table <- function(table, folder = NULL){
 
   if(dir.exists(table)) {
     nea_table <- read.csv(paste0(table,"/",table, ".csv"))

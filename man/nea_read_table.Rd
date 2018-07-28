@@ -27,7 +27,7 @@ to work. You can check the available tables in
 https://exoplanetarchive.ipac.caltech.edu/docs/program_interfaces.html#data.
 }
 \examples{
-nea_table("q1_q17_dr24_tce")
+nea_table("q1_q17_dr24_tce") # Download your data
 nea_read_table("q1_q17_dr24_tce")
 
 }
