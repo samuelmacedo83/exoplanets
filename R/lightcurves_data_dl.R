@@ -61,11 +61,14 @@ download_lightcurve <- function(kepid, base_url){
   }  else {
     utils::download.file(url = paste0(kepid_url, kepid_tar),
                          destfile = "lightcurves/temp.tar",
-                         method = "curl")
+                         method = "curl",
+                         quiet = TRUE)
     utils::untar("lightcurves/temp.tar",
                  exdir = "lightcurves")
 
     file.remove("lightcurves/temp.tar")
+
+    cat(paste0("The ", kepid, " lightcurve was successfully downloaded"))
   }
 
 }
