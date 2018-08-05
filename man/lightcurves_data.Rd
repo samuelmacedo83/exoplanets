@@ -7,7 +7,7 @@
 lightcurves_data(kepid_table)
 }
 \arguments{
-\item{nea_table}{data frame containing a column name kepid}
+\item{kepid_table}{A data frame containing a column name kepid}
 }
 \description{
 Download the lightcurve data according to the kepid provided

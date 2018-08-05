@@ -15,5 +15,7 @@ Imports:
     dplyr,
     magrittr,
     purrr,
+    rvest,
     stringr,
-    utils
+    utils,
+    xml2
