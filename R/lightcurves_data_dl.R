@@ -30,31 +30,42 @@ kepid_table <-  purrr::map_chr(kepid_table$kepid,
 
 # kepler lightcurve website
 base_url <- "http://archive.stsci.edu/pub/kepler/lightcurves/"
-kepid_url <- paste0(base_url,
-                    substring(kepid_table[1], 1, 4), "/",
-                    kepid_table[1], "/")
 
-# Link to download lightcurve data
-kepid_html <- xml2::read_html(kepid_url)
-kepid_fits <- kepid_html %>% rvest::html_nodes("a") %>% rvest::html_text()
-kepid_lc <- purrr::map_lgl(kepid_fits, grepl, pattern ="_lc_")
-kepid_tar <- kepid_fits[kepid_lc]
+# downloading lightcurves
+purrr::walk(kepid_table, download_lightcurve,
+           base_url = base_url)
 
-# Create the folder to storage the data, in necessary
-kepid_folder <- paste0("lightcurves/",kepid_table[1])
-
-if (dir.exists(kepid_folder)) {
-    cat(paste0("The ", kepid_table[1], " directory already exists"))
-  }  else {
-  browser()
-  utils::download.file(url = paste0(kepid_url, kepid_tar),
-                       destfile = "lightcurves/temp.tar",
-                       method = "curl")
-  utils::untar("lightcurves/temp.tar",
-               exdir = "lightcurves")
-  file.remove("lightcurves/temp.tar")
 }
 
-browser()
+download_lightcurve <- function(kepid, base_url){
+
+
+  # star lightcurve url
+  kepid_url <- paste0(base_url,
+                      substring(kepid, 1, 4), "/",
+                      kepid, "/")
+
+  # Link to download lightcurve data
+  kepid_html <- xml2::read_html(kepid_url)
+  kepid_fits <- kepid_html %>% rvest::html_nodes("a") %>% rvest::html_text()
+  kepid_lc <- purrr::map_lgl(kepid_fits, grepl, pattern ="_lc_")
+  kepid_tar <- kepid_fits[kepid_lc]
+
+
+
+  # Create the folder to storage the data, in necessary
+  kepid_folder <- paste0("lightcurves/",kepid)
+
+  if (dir.exists(kepid_folder)) {
+    cat(paste0("The ", kepid, " lightcurve directory already exists\n"))
+  }  else {
+    utils::download.file(url = paste0(kepid_url, kepid_tar),
+                         destfile = "lightcurves/temp.tar",
+                         method = "curl")
+    utils::untar("lightcurves/temp.tar",
+                 exdir = "lightcurves")
+
+    file.remove("lightcurves/temp.tar")
+  }
 
 }
