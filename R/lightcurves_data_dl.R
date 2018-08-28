@@ -68,7 +68,7 @@ download_lightcurve <- function(kepid, base_url){
 
     file.remove("lightcurves/temp.tar")
 
-    cat(paste0("The ", kepid, " lightcurve was successfully downloaded"))
+    cat(paste0("The ", kepid, " lightcurve was successfully downloaded\n"))
   }
 
 }

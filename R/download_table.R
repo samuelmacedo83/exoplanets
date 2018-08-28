@@ -90,7 +90,7 @@ if (length(columns) == 1){
 #' A data frame containing the data
 #'
 #' @examples
-#' nea_table("q1_q17_dr24_tce") # Download your data
+#' nea_table_dl("q1_q17_dr24_tce") # Download your data
 #' read_nea_table("q1_q17_dr24_tce")
 #'
 #' @export

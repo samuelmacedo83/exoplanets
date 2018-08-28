@@ -1,3 +1,3 @@
 # exoplanets
 
-This package provides tools for studying exoplantes 
+This package provides tools for studying exoplanets 
