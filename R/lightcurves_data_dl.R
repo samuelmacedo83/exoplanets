@@ -13,10 +13,17 @@ lightcurves_data <- function(kepid_table){
     dir.create("lightcurves")
   }
 
+  # when the user doesn't pass a data.frame
+  if (class(kepid_table) == "numeric"){
+
+    kepid_table = data.frame(kepid = kepid_table)
+  }
+
  # verify the kepid column
  if (!any(grepl("kepid", names(kepid_table))) == TRUE){
    stop("There is no kepid column in your data")
  }
+
 
 # remove duplicate
 kepid_table <- kepid_table %>%
